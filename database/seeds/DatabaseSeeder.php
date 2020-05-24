@@ -25,14 +25,14 @@ class UsersTableSeeder extends Seeder{
     public function run(){
         DB::table('users')->delete();
 
-        User::create(['name' => 'Sample Admin',
-            'email' => 'admin@purplebug.com',
+        User::create(['name' => 'Rando Dalawis',
+            'email' => 'rdalawis@mymail.com',
             'password' => Hash::make('abcd1234'),
             'role_id' => 1,
         ]);
 
-        User::create(['name' => 'Sample User',
-            'email' => 'user@purplebug.com',
+        User::create(['name' => 'Juan Dela Cruz',
+            'email' => 'jdelacruz@mymail.com',
             'password' => Hash::make('abcd1234'),
             'role_id' => 2,
         ]);
