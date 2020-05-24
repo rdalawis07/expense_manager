@@ -11,8 +11,7 @@
 |
 */
 
-Route::group(['middleware' => 'web'], function(){
-    Route::get('/{path}', function () {
+
+Route::get('/{path}', function () {
          return view('app');
-    })->where('path', '(.*)');
- });
+})->where('path', '(.*)');

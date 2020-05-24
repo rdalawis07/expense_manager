@@ -1,5 +1,5 @@
 <template>
-<div>
+<div v-resize="onResize">
     <v-row>
         <v-col cols="6">
             <div class="title">My Expenses</div>
@@ -13,6 +13,7 @@
             </v-breadcrumbs>
         </v-col>
     </v-row>
+    <div v-if="windowSize.x > 600">
     <v-row>
         <v-col cols="4">
             <v-simple-table class="text-center body-2 d-flex justify-end">
@@ -34,12 +35,42 @@
             <canvas id="myExpenses" style="width: 100%; height: 100%;"></canvas>
         </v-col>
     </v-row>
+    </div>
+    <div v-else>
+    <v-row>
+        <v-col>
+            <canvas id="myExpenses" style="width: 100%; height: 100%;"></canvas>
+        </v-col>
+    </v-row>
+    <v-row>
+        <v-col>
+            <v-simple-table class="text-center body-2 d-flex justify-start">
+                <thead>
+                    <tr>
+                        <th class="text-center">Expense Categories</th>
+                        <th class="text-center">Total</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr v-for="item in myExpenseList" :key="item.expense_category_name">
+                        <td>{{ item.expense_category_name }}</td>
+                        <td>{{ '$ ' + item.total_amount }}</td>
+                    </tr>
+                </tbody>
+            </v-simple-table>
+        </v-col>
+    </v-row>
+    </div>
 </div>
 </template>
 <script>
 export default {
     data(){
         return {
+            windowSize: {
+                x: 0,
+                y: 0,
+            },
             myExpenseList: [],
             chartExpenses: null,
             items: [
@@ -50,6 +81,10 @@ export default {
             ],
             randColorList: ['#E91E63', '#F8BBD0', '#FF2301', '#45323FF', '#00FF12', '#4CAF50', '#009688', '#673AB7', '#607D8B', '#FFEB3B', '#4CAF50', '#03A9F4', '#795548', '#FF9800', '#F44336', '#3F51B5'], 
         }
+    },
+
+    mounted(){
+      this.onResize();
     },
 
     computed: {
@@ -113,6 +148,9 @@ export default {
             });
         },
 
+        onResize () {
+            this.windowSize = { x: window.innerWidth, y: window.innerHeight }
+        }
         
     }
 }
