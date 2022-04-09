@@ -28,7 +28,7 @@
         "babel-polyfill": "^6.26.0",
         "chart.js": "^2.9.3",
         "html2canvas": "^1.0.0-rc.5",
-        "moment": "^2.25.3",
+        "moment": "^2.29.2",
         "typeface-roboto": "0.0.75",
         "vue-router": "^3.1.6",
         "vue-sweetalert2": "^3.0.5",
